@@ -16,27 +16,32 @@ const retrieve = (options={}) => {
 
 // Variable that needed to be declared such as limit
     var limit = 10
+    var page = options.page || 1
     console.log("Option detected:", options)
 
 //URI
 console.log(window.path)
 var uri = URI(window.path)
     .addSearch("limit", limit+1)
+    .addSearch("offset", (page-1) * limit)
     // add color if exist
     if(options.colors && options.colors.length > 0) {
         uri.addSearch("color[]", options.colors);
     }
-    //TODO .addSearch for offset (remember 10 per page)
+
     console.log(uri)
 
 
     //FETCH
 fetch(uri)
-
-//Console Log (from Fetch doc)
-.then( response => response.json() ) 
-.then( data => console.log("DATA", data))
-
+.then(function(response) {
+    if(response.ok) {
+        return response.json()
+    } else {
+        console.log("Error", response.status)
+    }
+})
+console.log("Passed Response")
 
 return
 }
