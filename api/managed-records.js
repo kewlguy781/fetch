@@ -22,7 +22,7 @@ const retrieve = (options={}) => {
 //URI
 //console.log(window.path)
 var uri = URI(window.path)
-    .addSearch("limit", limit+1)
+    .addSearch("limit", limit)
     .addSearch("offset", (page-1) * limit)
     // add color if exist
     if(options.colors && options.colors.length > 0) {
@@ -45,12 +45,17 @@ var uri = URI(window.path)
     .then(
         function(data){
             console.log(data)
+
+            //Primary color search
+            // https://attacomsian.com/blog/javascript-array-search
+            data.forEach(d=>d.isPrimary = primaryColors.indexOf(d.color) != -1)
            
             var jsonFiltered = {};
             jsonFiltered.ids = data.map(d => d.id)
             jsonFiltered.open = data.filter(d => d.disposition == "open")
             jsonFiltered.previousPage = page == 1 ? null : page - 1;
             jsonFiltered.nextPage = page + 1
+            jsonFiltered.closedPrimaryCount = data.filter(d => d.disposition =="closed" && d.isPrimary).length
             return jsonFiltered
 
         }
