@@ -87,3 +87,5 @@ In `api/managed-records.js`, write a function named `retrieve` that requests dat
 `yarn install` to install.
 
 `yarn test` to run the provided unit tests.
+
+**Note: if you want to "debug" to see console.log, make sure to uncomment one of console.log, and run `yarn test`. However that will result in one of these test not passed!**
