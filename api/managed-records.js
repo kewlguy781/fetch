@@ -29,7 +29,7 @@ var uri = URI(window.path)
         uri.addSearch("color[]", options.colors);
     }
 
-    console.log(uri)
+    //console.log(uri)
 
 
     //FETCH
@@ -44,7 +44,7 @@ var uri = URI(window.path)
     //Working on the data
     .then(
         function(data){
-            console.log(data)
+            //console.log(data)
 
             //Primary color search
             // https://attacomsian.com/blog/javascript-array-search
@@ -64,6 +64,10 @@ var uri = URI(window.path)
             jsonFiltered.closedPrimaryCount = data.filter(d => d.disposition =="closed" && d.isPrimary).length
             return jsonFiltered
 
+        }
+    ).catch(
+        function(error){
+            console.log("ERROR" + error)
         }
     )
 

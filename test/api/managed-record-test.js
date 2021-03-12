@@ -74,7 +74,7 @@ describe("Records", function() {
 
   it('should recover on fetch error', function(done){
     //TODO SOMEHOW ITS MESSING UP WITH TEST, IM GOING TO CHANGE IT TO TEST, then change back. 
-    window.path = "http://localhost:3000/records";
+    window.path = "http://localhost:3000/recordszzzz";
     spyOn(console, "log").and.callFake(function(){});
 
     function check(output) {
