@@ -19,6 +19,7 @@ const retrieve = (options={}) => {
     console.log("Option detected:", options)
 
 //URI
+console.log(window.path)
 var uri = URI(window.path)
     .addSearch("limit", limit+1)
     // add color if exist
@@ -26,13 +27,16 @@ var uri = URI(window.path)
         uri.addSearch("color[]", options.colors);
     }
     //TODO .addSearch for offset (remember 10 per page)
-
-console.log(uri)
+    console.log(uri)
 
 
     //FETCH
+fetch(uri)
 
-    
+//Console Log (from Fetch doc)
+.then( response => response.json() ) 
+.then( data => console.log("DATA", data))
+
 
 return
 }
