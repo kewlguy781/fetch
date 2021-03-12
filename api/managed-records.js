@@ -17,7 +17,7 @@ const retrieve = (options={}) => {
 // Variable that needed to be declared such as limit
     var limit = 10
     var page = options.page || 1
-    console.log("Option detected:", options)
+    //console.log("Option detected:", options)
 
 //URI
 console.log(window.path)
@@ -33,15 +33,21 @@ var uri = URI(window.path)
 
 
     //FETCH
-fetch(uri)
-.then(function(response) {
-    if(response.ok) {
-        return response.json()
-    } else {
-        console.log("Error", response.status)
-    }
-})
-console.log("Passed Response")
+    fetch(uri)
+    .then(function(response) {
+        if(response.ok) {
+            return response.json()
+        } else {
+            console.log("Error", response.status)
+        }
+    })
+    //Working on the record
+    .then(
+        function(data){
+            console.log(data)
+        }
+    )
+
 
 return
 }
