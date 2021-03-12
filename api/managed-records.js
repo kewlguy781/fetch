@@ -20,7 +20,7 @@ const retrieve = (options={}) => {
     //console.log("Option detected:", options)
 
 //URI
-console.log(window.path)
+//console.log(window.path)
 var uri = URI(window.path)
     .addSearch("limit", limit+1)
     .addSearch("offset", (page-1) * limit)
@@ -33,7 +33,7 @@ var uri = URI(window.path)
 
 
     //FETCH
-    fetch(uri)
+    return  fetch(uri)
     .then(function(response) {
         if(response.ok) {
             return response.json()
@@ -41,15 +41,21 @@ var uri = URI(window.path)
             console.log("Error", response.status)
         }
     })
-    //Working on the record
+    //Working on the data
     .then(
         function(data){
             console.log(data)
+           
+            var jsonFiltered = {};
+            jsonFiltered.ids = data.map(d => d.id)
+            jsonFiltered.open = data.filter(d => d.disposition == "open")
+            return jsonFiltered
+
         }
     )
 
 
-return
+
 }
 
 
