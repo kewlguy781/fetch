@@ -49,6 +49,8 @@ var uri = URI(window.path)
             var jsonFiltered = {};
             jsonFiltered.ids = data.map(d => d.id)
             jsonFiltered.open = data.filter(d => d.disposition == "open")
+            jsonFiltered.previousPage = page == 1 ? null : page - 1;
+            jsonFiltered.nextPage = page + 1
             return jsonFiltered
 
         }
